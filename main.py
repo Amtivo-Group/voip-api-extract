@@ -5,9 +5,9 @@ from pathlib import Path
 import os
 import config
 
-
+# Get the current Windows user
+# This is used to determine if the dataframes can be exported to the FP&A sharepoint file
 user = os.getlogin()
-
 
 # Importing config with keys. See config example for details.
 export_path = Path("C:/",
@@ -76,11 +76,13 @@ for record in records:
         "LanceBradley"
     ]
 
+    # Check if the user is one of those in user_check. If not then it does not export the dataframes
+    # Update after else if you need to store files locally
     if user in user_check:
         file_name = url + ".xlsx"
         full_path = Path(export_path,
                          file_name)
         df.to_excel(full_path, index=False)
-
     else:
         print("Unable to print local access required. Please update path.")
+        # Add export paths here
