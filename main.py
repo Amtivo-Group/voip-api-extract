@@ -50,9 +50,9 @@ table_headers = {"accept": "application/json", "Authorization": f"Bearer {auth_t
 records = [
     # {'url': ''}
     # {'url': 'eventlog'},
-    {'url': 'users'},
-    {'url': 'cl_calls'},
-    {'url': 'cl_participants'},
+    {'url': 'users', 'iterate': 0},
+    {'url': 'cl_calls', 'iterate': 1},
+    {'url': 'cl_participants', 'iterate': 1},
 ]
 
 print("Running for loop.", end='\n\n')
@@ -64,7 +64,22 @@ for record in records:
 
     table_response = requests.get(full_url, headers=table_headers)
 
+    
+    last_response_length = len(table_response.json())
     table_data = table_response.json()
+    if record['iterate'] == 1:
+        print("Iterating to get more records, currently have", len(table_data))
+        while last_response_length == 500:
+            last_id = table_data[-1]["id"]
+            next_url = full_url + "/" + str(last_id)
+            table_response = requests.get(next_url, headers=table_headers)
+            last_response_length = len(table_response.json())
+            table_data = table_data + table_response.json()
+            print("Got: ", last_response_length, " now have ", len(table_data))
+
+    print("Finished iterating API")
+    
+    print("Total Records: ", len(table_data))
     df = pd.DataFrame(table_data)
 
     print("Table " + url + " complete.")
@@ -86,3 +101,4 @@ for record in records:
     else:
         print("Unable to print local access required. Please update path.")
         # Add export paths here
+ 

@@ -1,2 +1,2 @@
-publicKey= "string"
-privateKey= "string"
+publicKey= ""
+privateKey= ""
