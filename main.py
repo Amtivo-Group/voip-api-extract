@@ -46,14 +46,16 @@ else:
 # Use the authentication token to make a GET request to the protected endpoint
 table_headers = {"accept": "application/json", "Authorization": f"Bearer {auth_token}"}
 
-# Update tables that you want to pull
 records = [
     # {'url': ''}
     # {'url': 'eventlog'},
-    {'url': 'users', 'iterate': 0},
+    # {'url': 'users', 'iterate': 0},
     {'url': 'cl_calls', 'iterate': 1},
-    {'url': 'cl_participants', 'iterate': 1},
+    # {'url': 'cl_participants', 'iterate': 1},
+    {'url': 'cl_segments', 'iterate': 1},
+    {'url': 'cl_party_info', 'iterate': 1},
 ]
+# Update tables that you want to pull
 
 print("Running for loop.", end='\n\n')
 
@@ -64,7 +66,6 @@ for record in records:
 
     table_response = requests.get(full_url, headers=table_headers)
 
-    
     last_response_length = len(table_response.json())
     table_data = table_response.json()
     if record['iterate'] == 1:
