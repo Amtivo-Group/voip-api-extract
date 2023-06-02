@@ -16,8 +16,10 @@ export_path = Path("C:/",
                    "BABDrive",
                    "FP&A - Documents",
                    "Private",
-                   "API Exports",
-                   "VOIP")
+                   "Spreadsheets for Qlik",
+                   "VOIP",
+                   "API Exports")
+
 
 # API endpoints and keys
 auth_url = "https://britishassessmentbureau.3cx.uk:8801/api/Authenticate"
@@ -48,10 +50,10 @@ table_headers = {"accept": "application/json", "Authorization": f"Bearer {auth_t
 
 records = [
     # {'url': ''}
-    # {'url': 'eventlog'},
-    # {'url': 'users', 'iterate': 0},
+    # {'url': 'eventlog', 'iterate': 0},
+    # # {'url': 'users', 'iterate': 0},
     {'url': 'cl_calls', 'iterate': 1},
-    # {'url': 'cl_participants', 'iterate': 1},
+    {'url': 'cl_participants', 'iterate': 1},
     {'url': 'cl_segments', 'iterate': 1},
     {'url': 'cl_party_info', 'iterate': 1},
 ]
