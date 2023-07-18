@@ -93,21 +93,21 @@ for record in records:
     print("Table " + url + " complete.")
     print(df.head(10).to_markdown(), end='\n\n')
 
-    user_check = [
-        "AntonyThornton",
-        "JamesButler",
-        "LanceBradley"
-    ]
-
-    # Check if the user is one of those in user_check. If not then it does not export the dataframes
-    # Update after else if you need to store files locally
-    if user in user_check:
-        file_name = url + ".xlsx"
-        file_name = url + ".xlsx"
-        full_path = Path(export_path,
-                         file_name)
-        df.to_excel(full_path, index=False)
-    else:
-        print("Unable to print local access required. Please update path.")
-        # Add export paths here
- 
+    # user_check = [
+    #     "AntonyThornton",
+    #     "JamesButler",
+    #     "LanceBradley"
+    # ]
+    #
+    # # Check if the user is one of those in user_check. If not then it does not export the dataframes
+    # # Update after else if you need to store files locally
+    # if user in user_check:
+    file_name = url + ".xlsx"
+    file_name = url + ".xlsx"
+    full_path = Path(export_path,
+                     file_name)
+    df.to_excel(full_path, index=False)
+ #    else:
+ #        print("Unable to print local access required. Please update path.")
+ #        # Add export paths here
+ #
