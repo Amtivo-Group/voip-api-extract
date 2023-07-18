@@ -57,7 +57,7 @@ records = [
     # {'url': ''}
     # {'url': 'eventlog', 'iterate': 0},
     # # {'url': 'users', 'iterate': 0},
-    {'url': 'cl_calls', 'iterate': 1},
+        {'url': 'cl_calls', 'iterate': 1},
     {'url': 'cl_participants', 'iterate': 1},
     {'url': 'cl_segments', 'iterate': 1},
     {'url': 'cl_party_info', 'iterate': 1},
@@ -102,8 +102,7 @@ for record in records:
     # # Check if the user is one of those in user_check. If not then it does not export the dataframes
     # # Update after else if you need to store files locally
     # if user in user_check:
-    file_name = url + ".xlsx"
-    file_name = url + ".xlsx"
+    file_name = url + ".csv"
     full_path = Path(export_path,
                      file_name)
     df.to_excel(full_path, index=False)
