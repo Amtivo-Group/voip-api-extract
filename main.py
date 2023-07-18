@@ -9,17 +9,22 @@ import config
 # This is used to determine if the dataframes can be exported to the FP&A sharepoint file
 user = os.getlogin()
 
-# Importing config with keys. See config example for details.
-export_path = Path("C:/",
-                   "Users",
-                   user,
-                   "BABDrive",
-                   "FP&A - Documents",
-                   "Private",
-                   "Spreadsheets for Qlik",
-                   "VOIP",
-                   "API Exports")
+# # Importing config with keys. See config example for details.
+# export_path = Path("C:/",
+#                    "Users",
+#                    user,
+#                    "BABDrive",
+#                    "FP&A - Documents",
+#                    "Private",
+#                    "Spreadsheets for Qlik",
+#                    "VOIP",
+#                    "API Exports")
 
+export_path = Path("/",
+                   "var",
+                   "www",
+                   "html",
+                   )
 
 # API endpoints and keys
 auth_url = "https://britishassessmentbureau.3cx.uk:8801/api/Authenticate"
@@ -97,6 +102,7 @@ for record in records:
     # Check if the user is one of those in user_check. If not then it does not export the dataframes
     # Update after else if you need to store files locally
     if user in user_check:
+        file_name = url + ".xlsx"
         file_name = url + ".xlsx"
         full_path = Path(export_path,
                          file_name)
